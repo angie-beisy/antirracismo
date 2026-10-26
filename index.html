@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Amigo - ARG Educativo & Gamificación Ética (Fundación Senara)</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        playful: ['Fredoka', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        beeYellow: '#FFD166',
+                        beeDark: '#2B2D42',
+                        leafGreen: '#06D6A0',
+                        skyBlue: '#118AB2',
+                        coralPink: '#EF476F',
+                        softCream: '#FDFBF7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes floatBee {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(6deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-bee {
+            animation: floatBee 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 209, 102, 0.7); }
+            50% { box-shadow: 0 0 25px rgba(6, 214, 160, 0.9); }
+        }
+        .glow-box {
+            animation: pulseGlow 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-softCream text-beeDark font-sans antialiased selection:bg-beeYellow selection:text-beeDark min-h-screen flex flex-col">
+
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-yellow-100">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-beeYellow rounded-full flex items-center justify-center shadow-md text-xl animate-bee">
+                    🐝
+                </div>
+                <div>
+                    <h1 class="font-playful font-bold text-xl text-beeDark tracking-wide">Mundo Amigo</h1>
+                    <p class="text-xs text-gray-500">ARG Educativo &bull; Fundación Senara</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6 font-playful text-sm font-medium">
+                <a href="#intro" class="hover:text-skyBlue transition">Inicio</a>
+                <a href="#nodo1" class="hover:text-skyBlue transition">Nodo 1: Rompecabezas</a>
+                <a href="#nodo2" class="hover:text-skyBlue transition">Nodo 2: Audiocuento</a>
+                <a href="#nodo3" class="hover:text-skyBlue transition">Nodo 3: Xenofobia</a>
+                <a href="#nodo4" class="hover:text-skyBlue transition">Nodo 4: Mural Colectivo</a>
+            </nav>
+            <button onclick="playBuzzerSound('success')" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-2xl shadow-md transition transform hover:scale-105 flex items-center gap-2">
+                <i class="fa-solid fa-volume-high"></i> Sonido Mágico
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="intro" class="py-12 px-4 max-w-6xl mx-auto text-center">
+            <div class="bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 rounded-3xl p-8 md:p-12 shadow-xl border-2 border-yellow-200 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">🐝</div>
+                
+                <span class="bg-coralPink text-white font-playful text-xs uppercase px-4 py-1.5 rounded-full font-bold tracking-wider inline-block mb-4 shadow-sm">
+                    Experiencia Transmedia &bull; Edades 6-8 años &bull; Ética en el Aula
+                </span>
+                
+                <h2 class="font-playful text-3xl md:text-5xl font-bold text-beeDark mb-4">
+                    Construyendo Espacios de Respeto sin Discriminación
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg mb-8">
+                    Basado en la <em>Guía didáctica para sensibilizar contra el racismo y la xenofobia en las aulas</em> (Fundación Senara). Una aventura donde la empatía y la cooperación son nuestras mayores herramientas.
+                </p>
+
+                <!-- QR CODE & BEE GUIDE -->
+                <div class="bg-white rounded-2xl p-6 max-w-xl mx-auto shadow-lg border border-yellow-100 flex flex-col md:flex-row items-center gap-6 relative">
+                    <!-- Animated Bee guiding to QR -->
+                    <div class="absolute -top-12 left-1/4 text-4xl animate-bee z-20 pointer-events-none drop-shadow-md">
+                        🐝 <span class="text-xs bg-beeYellow text-beeDark font-playful px-2.5 py-1 rounded-full font-bold shadow-md">¡Sígueme al video!</span>
+                    </div>
+
+                    <div class="relative flex-shrink-0">
+                        <div class="bg-beeYellow/20 p-3 rounded-2xl border-2 border-dashed border-beeYellow">
+                            <div class="w-36 h-36 bg-gray-900 rounded-xl p-3 flex flex-col justify-between text-white text-xs font-mono relative group cursor-pointer shadow-inner" onclick="window.open('https://youtu.be/bvvmioCWK5I?si=MaofzLeUQlUd0Emv', '_blank')">
+                                <div class="flex justify-between">
+                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
+                                    <div class="w-6 h-6 bg-white rounded-sm"></div>
+                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
+                                </div>
+                                <div class="text-center font-bold text-[10px] bg-red-600 text-white py-1.5 rounded shadow">ESCANEAR / CLIC</div>
+                                <div class="flex justify-between items-end">
+                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
+                                    <div class="w-10 h-6 bg-white rounded-sm"></div>
+                                </div>
+                                <!-- Hover overlay -->
+                                <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center rounded-xl text-center p-2 font-playful font-bold text-white text-xs">
+                                    ¡Haz clic para ver el video introductorio en YouTube!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-playful font-bold text-xl text-beeDark mb-2 flex items-center gap-2">
+                            <span>📺 Video de Iniciación</span>
+                            <span class="text-xs bg-red-100 text-red-600 px-2.5 py-0.5 rounded-full font-sans font-bold">YouTube</span>
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Sigue a nuestra amiga la abeja hacia el código QR o haz clic en él para reflexionar sobre lo dañino que es excluir y discriminar a los demás.
+                        </p>
+                        <a href="https://youtu.be/bvvmioCWK5I?si=MaofzLeUQlUd0Emv" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-playful text-sm px-5 py-2.5 rounded-xl shadow-md transition transform hover:scale-105">
+                            <i class="fa-brands fa-youtube text-lg"></i> Ver Video en YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nodo1" class="py-12 px-4 max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-sky-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-12 h-12 bg-skyBlue text-white rounded-2xl flex items-center justify-center font-playful text-2xl shadow-md">1</span>
+                    <div>
+                        <span class="text-skyBlue font-playful font-bold text-sm tracking-wide uppercase">Nodo 1 &bull; Visual & Interactivo</span>
+                        <h2 class="font-playful text-2xl md:text-3xl font-bold text-beeDark">¿Qué está pasando? &bull; Rompecabezas Arrastrable Interactivo</h2>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 mb-6 text-base">
+                    Arma el rompecabezas interactivo seleccionando una imagen. **Arrastra y suelta las fichas** (o haz clic en una ficha y luego en su destino) para ordenar la escena. Al completarlo, analiza el caso y decide si la acción es adecuada.
+                </p>
+
+                <!-- Puzzle & Scenario Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch bg-sky-50/50 p-6 rounded-2xl border border-sky-100">
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white p-4 rounded-2xl shadow-md border border-sky-200 text-center relative overflow-hidden flex-grow flex flex-col justify-between">
+                            
+                            <!-- Interactive Drag and Drop Board -->
+                            <div class="relative w-full aspect-4/3 bg-slate-900 rounded-xl overflow-hidden border-2 border-sky-300 shadow-inner p-2 flex items-center justify-center">
+                                <div id="interactive-puzzle-board" class="grid grid-cols-3 gap-1 w-full h-full max-w-[420px] max-h-[315px] select-none">
+                                    <!-- Dynamic puzzle tiles inserted via JS -->
+                                </div>
+
+                                <div id="puzzle-completed-overlay" class="absolute inset-0 bg-emerald-950/80 backdrop-blur-xs flex flex-col items-center justify-center text-center p-4 transition-all duration-300 hidden">
+                                    <div class="w-14 h-14 bg-emerald-400 text-emerald-950 rounded-full flex items-center justify-center text-3xl mb-2 animate-bounce">
+                                        ✨
+                                    </div>
+                                    <h4 class="text-white font-playful text-xl font-bold mb-1">¡Rompecabezas Completado!</h4>
+                                    <p class="text-emerald-200 text-xs mb-4 max-w-xs">Has ordenado la imagen correctamente. Ahora evalúa la situación con tu grupo.</p>
+                                    <button onclick="shuffleCurrentPuzzle()" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-xl text-xs transition shadow">
+                                        <i class="fa-solid fa-arrows-rotate"></i> Volver a Desordenar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div class="flex items-center gap-2" id="puzzle-selector">
+                                    <button onclick="changePuzzleImage(0)" id="pbtn-0" class="px-3 py-1.5 rounded-xl border-2 border-sky-500 bg-sky-100 text-sky-900 font-playful text-xs font-bold transition">Imagen 1</button>
+                                    <button onclick="changePuzzleImage(1)" id="pbtn-1" class="px-3 py-1.5 rounded-xl border-2 border-transparent bg-gray-100 text-gray-700 font-playful text-xs font-bold transition">Imagen 2</button>
+                                    <button onclick="changePuzzleImage(2)" id="pbtn-2" class="px-3 py-1.5 rounded-xl border-2 border-transparent bg-gray-100 text-gray-700 font-playful text-xs font-bold transition">Imagen 3</button>
+                                </div>
+
+                                <button onclick="shuffleCurrentPuzzle()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful text-xs px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shuffle"></i> Mezclar Fichas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div id="scenario-box" class="bg-white p-6 rounded-2xl shadow-md border border-sky-200 h-full flex flex-col justify-between">
+                            <div>
+                                <span id="scenario-tag" class="text-xs font-playful font-bold bg-sky-100 text-skyBlue px-3 py-1 rounded-full uppercase tracking-wide">Imagen 1 de 3</span>
+                                <h3 id="scenario-title" class="font-playful font-bold text-xl text-beeDark mt-3 mb-2">Compañerismo y Juego en Equipo</h3>
+                                <p id="scenario-desc" class="text-gray-600 mb-6 text-sm leading-relaxed">
+                                    Observa cómo la colaboración entre niños y niñas de diversos orígenes fortalece la amistad y la empatía en el aula.
+                                </p>
+
+                                <div class="mb-6">
+                                    <p class="font-playful font-bold text-beeDark text-sm mb-3">¿Cómo valoras esta acción?</p>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <button onclick="evaluateAction('bien')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-emerald-500 bg-emerald-100 text-emerald-900 hover:bg-emerald-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
+                                            <i class="fa-solid fa-face-smile text-2xl text-emerald-600"></i> <span>ESTÁ BIEN</span>
+                                        </button>
+                                        <button onclick="evaluateAction('mal')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-rose-500 bg-rose-100 text-rose-900 hover:bg-rose-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
+                                            <i class="fa-solid fa-face-angry text-2xl text-rose-600"></i> <span>NO ESTÁ BIEN</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div id="feedback-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-sm text-amber-900">
+                                    <h4 class="font-playful font-bold mb-1 flex items-center gap-2 text-amber-800 text-base">
+                                        <i class="fa-solid fa-lightbulb"></i> Reflexión Pedagógica (Fundación Senara):
+                                    </h4>
+                                    <p id="feedback-text" class="italic"></p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex justify-end">
+                                <button onclick="nextScenario()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful font-bold px-5 py-2.5 rounded-xl shadow transition text-sm flex items-center gap-2">
+                                    Siguiente Imagen <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nodo2" class="py-12 px-4 max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-leafGreen/30">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-12 h-12 bg-leafGreen text-white rounded-2xl flex items-center justify-center font-playful text-2xl shadow-md">2</span>
+                    <div>
+                        <span class="text-leafGreen font-playful font-bold text-sm tracking-wide uppercase">Nodo 2 &bull; Sonoro & Empatía</span>
+                        <h2 class="font-playful text-2xl md:text-3xl font-bold text-beeDark">Ponte en sus zapatos &bull; Audiocuento Inmersivo</h2>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 mb-6 text-base">
+                    Escucha la historia sonora oficial de sensibilización. Utiliza el reproductor multimedia integrado con todos los controles de audio para escuchar el relato e iniciar el diálogo reflexivo.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 bg-emerald-50/40 p-6 rounded-2xl border border-emerald-100 items-center">
+                    <div class="md:col-span-1 text-center bg-white p-6 rounded-2xl shadow-md border border-emerald-200">
+                        <div class="w-20 h-20 bg-leafGreen/20 text-leafGreen rounded-full flex items-center justify-center mx-auto mb-4 text-3xl animate-bounce">
+                            🎧
+                        </div>
+                        <h3 class="font-playful font-bold text-lg text-beeDark mb-1">Audiocuento: "El Nuevo Cole"</h3>
+                        <p class="text-xs text-gray-500 mb-4">Relato oficial de concienciación e inclusión</p>
+
+                        <!-- HTML5 Audio Player with standard controls -->
+                        <div class="bg-gray-50 p-3 rounded-2xl border border-emerald-200">
+                            <audio id="official-audio-player" class="w-full h-10 rounded-lg outline-none" controls preload="metadata">
+                                <source src="https://ia800208.us.archive.org/4/items/test-audio-story-senara/audiocuento-senara.mp3" type="audio/mpeg">
+                                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                                Tu navegador no soporta el elemento de audio.
+                            </audio>
+                        </div>
+                        
+                        <div id="audio-status" class="text-xs font-playful text-emerald-700 mt-3 font-semibold h-4">
+                            Usa los controles del reproductor para escuchar
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-md border border-emerald-200">
+                        <h3 class="font-playful font-bold text-lg text-beeDark mb-3">Preguntas de Reflexión y Empatía:</h3>
+                        <ul class="space-y-3 text-sm text-gray-700 mb-6">
+                            <li class="flex items-start gap-2">
+                                <span class="text-leafGreen font-bold text-lg">&bull;</span> ¿Cómo creen que se sintió nuestro compañero al llegar y no recibir saludos?
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-leafGreen font-bold text-lg">&bull;</span> ¿Qué pudo haber pensado cuando lo dejaron solo en el patio?
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-leafGreen font-bold text-lg">&bull;</span> ¿Qué podríamos hacer nosotros para cambiar esta historia?
+                            </li>
+                        </ul>
+
+                        <div class="border-t border-emerald-100 pt-4">
+                            <label class="block font-playful font-bold text-xs text-beeDark uppercase mb-2">Graba tu mensaje corto para el personaje:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="audio-msg-input" placeholder="Ej: Yo te invitaría a jugar porque..." class="flex-grow px-4 py-2.5 rounded-xl border border-emerald-300 text-sm focus:outline-none focus:ring-2 focus:ring-leafGreen">
+                                <button onclick="recordAudioMessage()" class="bg-beeDark hover:bg-black text-white font-playful px-4 py-2.5 rounded-xl text-sm transition shadow">
+                                    <i class="fa-solid fa-microphone"></i> Enviar
+                                </button>
+                            </div>
+                            <div id="recorded-msg-list" class="mt-3 flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nodo3" class="py-12 px-4 max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-coralPink/30">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-12 h-12 bg-coralPink text-white rounded-2xl flex items-center justify-center font-playful text-2xl shadow-md">3</span>
+                    <div>
+                        <span class="text-coralPink font-playful font-bold text-sm tracking-wide uppercase">Nodo 3 &bull; Diversidad & Xenofobia</span>
+                        <h2 class="font-playful text-2xl md:text-3xl font-bold text-beeDark">Entendiendo la Xenofobia &bull; Retos del Aula</h2>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 mb-6 text-base">
+                    Explora múltiples ejemplos sobre xenofobia, acento, costumbres y prejuicios de origen. Descubre cómo las diferencias enriquecen nuestra comunidad escolar.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-pink-50/60 p-6 rounded-2xl border border-pink-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <span class="bg-coralPink text-white text-xs font-playful font-bold px-3 py-1 rounded-full">Caso A</span>
+                            <h3 class="font-playful font-bold text-lg text-beeDark mt-3 mb-2">El Acento y las Palabras</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Un estudiante recién llegado de otro país pronuncia algunas palabras diferente o usa expresiones distintas. Un grupo se burla de su forma de hablar.
+                            </p>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
+                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> Conocer otras culturas amplía nuestro vocabulario y visión del mundo.
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50/60 p-6 rounded-2xl border border-pink-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <span class="bg-coralPink text-white text-xs font-playful font-bold px-3 py-1 rounded-full">Caso B</span>
+                            <h3 class="font-playful font-bold text-lg text-beeDark mt-3 mb-2">Costumbres y Comidas</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                En la hora del almuerzo, alguien trae comida típica de su tierra y otros murmuran diciendo que huele extraño o es "rara".
+                            </p>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
+                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> La gastronomía y las tradiciones son parte de nuestra identidad y patrimonio compartido.
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50/60 p-6 rounded-2xl border border-pink-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <span class="bg-coralPink text-white text-xs font-playful font-bold px-3 py-1 rounded-full">Caso C</span>
+                            <h3 class="font-playful font-bold text-lg text-beeDark mt-3 mb-2">El Origen Geográfico</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Se asume erróneamente que una persona no puede saber tanto o participar en juegos en equipo por venir de una ciudad o país lejano.
+                            </p>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
+                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> El talento y la inteligencia no tienen fronteras ni pasaporte.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nodo4" class="py-12 px-4 max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-beeYellow/50">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-12 h-12 bg-beeYellow text-beeDark rounded-2xl flex items-center justify-center font-playful text-2xl shadow-md font-bold">4</span>
+                    <div>
+                        <span class="text-yellow-600 font-playful font-bold text-sm tracking-wide uppercase">Nodo 4 &bull; Físico / Digital Participativo</span>
+                        <h2 class="font-playful text-2xl md:text-3xl font-bold text-beeDark">El Mural de las Diferencias &bull; Lienzo Abierto</h2>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 mb-6 text-base">
+                    Dibuja tu silueta o símbolo, anota algo que te gusta, algo que sabes hacer y lo que te hace único. Súmate al mural colectivo del aula donde todas las voces cuentan.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 bg-amber-50/40 p-6 rounded-2xl border border-yellow-200">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-yellow-200 flex flex-col">
+                        <h3 class="font-playful font-bold text-lg text-beeDark mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-paintbrush text-yellow-500"></i> Lienzo de Dibujo
+                        </h3>
+                        <p class="text-xs text-gray-500 mb-3">Dibuja libremente tu símbolo o silueta de la amistad:</p>
+                        
+                        <div class="border-2 border-dashed border-yellow-300 rounded-xl overflow-hidden bg-white mb-4 relative flex-grow">
+                            <canvas id="mural-canvas" width="300" height="200" class="w-full cursor-crosshair touch-none bg-yellow-50/20"></canvas>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <input type="text" id="mural-phrase" placeholder="Frase: Ej: Me gusta compartir y soy único" class="w-full px-3 py-2.5 rounded-xl border border-yellow-300 text-xs focus:outline-none focus:ring-2 focus:ring-beeYellow shadow-inner">
+                            <div class="flex gap-2">
+                                <button onclick="clearCanvas()" class="bg-gray-200 hover:bg-gray-300 text-beeDark font-playful px-3 py-2.5 rounded-xl text-xs transition">
+                                    <i class="fa-solid fa-eraser"></i> Borrar
+                                </button>
+                                <button onclick="addToMural()" class="flex-grow bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2.5 rounded-xl text-xs transition shadow">
+                                    <i class="fa-solid fa-plus"></i> Añadir al Mural
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md border border-yellow-200 flex flex-col">
+                        <h3 class="font-playful font-bold text-lg text-beeDark mb-2 flex items-center justify-between">
+                            <span>🎨 Mural Colectivo del Aula</span>
+                            <span class="text-xs font-bold bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full" id="mural-count">1 aporte</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mb-4">"Si todos fuéramos exactamente iguales, ¿qué cosas no podríamos aprender de los demás?"</p>
+
+                        <div id="mural-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto max-h-[380px] p-2 bg-yellow-50/30 rounded-xl border border-yellow-100">
+                            <!-- Default item -->
+                            <div class="bg-white p-4 rounded-xl border border-yellow-200 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <span class="text-[10px] bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full font-bold">Ejemplo Colectivo</span>
+                                    <p class="font-playful font-bold text-sm text-beeDark mt-2">"Me gusta pintar y sé escuchar a mis amigos con atención."</p>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                                    <span>👤 Sofía (8 años)</span>
+                                    <span class="text-red-500"><i class="fa-solid fa-heart"></i> 12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-beeDark text-white py-8 px-4 mt-12 border-t border-yellow-500/20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <h4 class="font-playful font-bold text-lg text-beeYellow">Mundo Amigo &bull; Biblia Transmedia Educativa</h4>
+                <p class="text-xs text-gray-400">Basado en la Guía didáctica contra el racismo y la xenofobia (Fundación Senara).</p>
+            </div>
+            <div class="text-xs text-gray-400">
+                Diseño Instruccional Ético &bull; Ecología de los Medios (Scolari / Jenkins)
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Drag & Drop Puzzle State
+        let activePuzzleIndex = 0;
+        let selectedTileIndex = null;
+        let currentBoardState = []; // Array of piece indices [0..8]
+
+        const puzzleImages = [
+            {
+                url: 'https://thumbs.dreamstime.com/b/e-114876132.jpg',
+                tag: 'Imagen 1 de 3',
+                title: 'Trabajo en Equipo y Diversidad',
+                desc: 'Niños y niñas colaborando felices en el aula compartiendo sus aprendizajes.',
+                feedback: 'El trabajo colaborativo nos permite aprender de las fortalezas de cada uno y construir una convivencia en armonía.',
+                isGood: true
+            },
+            {
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFl--tTbnSfwjWlvOUBYvvgim00Uj6rnl9NLnH3fqcWy47ugygI9foJOI6&s=10',
+                tag: 'Imagen 2 de 3',
+                title: 'Inclusión en los Juegos del Recreo',
+                desc: 'Invitar a todos a jugar en el patio evita que alguien se sienta triste o solo.',
+                feedback: '¡Excelente! Integrar a todos los compañeros sin importar su origen o apariencia crea un clima escolar seguro y respetuoso.',
+                isGood: true
+            },
+            {
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgrnpltTZ9KH6jEAwGQoldEt3-hj0Cl7iuhTMxTVM9kw&s=10',
+                tag: 'Imagen 3 de 3',
+                title: 'Abrazo Colectivo y Respeto',
+                desc: 'La empatía y la amistad superan cualquier barrera de exclusión.',
+                feedback: 'Las diferencias no son motivo de separación; al contrario, la pluralidad nos enriquece como seres humanos.',
+                isGood: true
+            }
+        ];
+
+        function initPuzzleBoard() {
+            currentBoardState = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            shuffleArray(currentBoardState);
+            renderPuzzleBoard();
+            
+            const overlay = document.getElementById('puzzle-completed-overlay');
+            if(overlay) overlay.classList.add('hidden');
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function renderPuzzleBoard() {
+            const board = document.getElementById('interactive-puzzle-board');
+            if(!board) return;
+            board.innerHTML = '';
+            selectedTileIndex = null;
+
+            const imgUrl = puzzleImages[activePuzzleIndex].url;
+
+            currentBoardState.forEach((pieceIdx, slotIdx) => {
+                const tile = document.createElement('div');
+                tile.className = 'relative w-full h-full cursor-pointer rounded-lg overflow-hidden border-2 border-amber-300/60 shadow-sm transition transform hover:scale-[1.02] bg-slate-800';
+                tile.draggable = true;
+
+                // Calculate CSS background position for 3x3 grid (0%, 50%, 100%)
+                const row = Math.floor(pieceIdx / 3);
+                const col = pieceIdx % 3;
+                const bgX = col * 50;
+                const bgY = row * 50;
+
+                tile.style.backgroundImage = `url('${imgUrl}')`;
+                tile.style.backgroundSize = '300% 300%';
+                tile.style.backgroundPosition = `${bgX}% ${bgY}%`;
+
+                // Add Drag and Drop Listeners
+                tile.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', slotIdx);
+                });
+
+                tile.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    tile.classList.add('border-sky-400', 'scale-105');
+                });
+
+                tile.addEventListener('dragleave', () => {
+                    tile.classList.remove('border-sky-400', 'scale-105');
+                });
+
+                tile.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    tile.classList.remove('border-sky-400', 'scale-105');
+                    const originSlot = parseInt(e.dataTransfer.getData('text/plain'));
+                    swapTiles(originSlot, slotIdx);
+                });
+
+                // Click-to-swap support for mobile & simple interactions
+                tile.addEventListener('click', () => {
+                    if (selectedTileIndex === null) {
+                        selectedTileIndex = slotIdx;
+                        tile.classList.add('ring-4', 'ring-beeYellow', 'scale-105');
+                    } else if (selectedTileIndex === slotIdx) {
+                        selectedTileIndex = null;
+                        renderPuzzleBoard();
+                    } else {
+                        swapTiles(selectedTileIndex, slotIdx);
+                    }
+                });
+
+                board.appendChild(tile);
+            });
+        }
+
+        function swapTiles(slotA, slotB) {
+            if (slotA === slotB || isNaN(slotA) || isNaN(slotB)) return;
+            const temp = currentBoardState[slotA];
+            currentBoardState[slotA] = currentBoardState[slotB];
+            currentBoardState[slotB] = temp;
+            
+            renderPuzzleBoard();
+            checkPuzzleCompletion();
+        }
+
+        function checkPuzzleCompletion() {
+            const isSolved = currentBoardState.every((val, index) => val === index);
+            if (isSolved) {
+                playBuzzerSound('success');
+                const overlay = document.getElementById('puzzle-completed-overlay');
+                if(overlay) overlay.classList.remove('hidden');
+            }
+        }
+
+        function changePuzzleImage(index) {
+            activePuzzleIndex = index;
+            
+            // Update button styles
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`pbtn-${i}`);
+                if (btn) {
+                    if (i === index) {
+                        btn.className = 'px-3 py-1.5 rounded-xl border-2 border-sky-500 bg-sky-100 text-sky-900 font-playful text-xs font-bold transition';
+                    } else {
+                        btn.className = 'px-3 py-1.5 rounded-xl border-2 border-transparent bg-gray-100 text-gray-700 font-playful text-xs font-bold transition';
+                    }
+                }
+            }
+
+            // Update scenario info
+            const data = puzzleImages[index];
+            const tagEl = document.getElementById('scenario-tag');
+            const titleEl = document.getElementById('scenario-title');
+            const descEl = document.getElementById('scenario-desc');
+            const feedbackBox = document.getElementById('feedback-box');
+
+            if(tagEl) tagEl.innerText = data.tag;
+            if(titleEl) titleEl.innerText = data.title;
+            if(descEl) descEl.innerText = data.desc;
+            if(feedbackBox) feedbackBox.classList.add('hidden');
+
+            initPuzzleBoard();
+        }
+
+        function shuffleCurrentPuzzle() {
+            initPuzzleBoard();
+            playBuzzerSound('success');
+        }
+
+        function evaluateAction(type) {
+            const feedbackBox = document.getElementById('feedback-box');
+            const feedbackText = document.getElementById('feedback-text');
+            if(!feedbackBox || !feedbackText) return;
+
+            feedbackBox.classList.remove('hidden');
+            const data = puzzleImages[activePuzzleIndex];
+
+            if(type === 'bien') {
+                feedbackText.innerHTML = "<strong>¡Excelente!</strong> " + data.feedback;
+                playBuzzerSound('success');
+            } else {
+                feedbackText.innerHTML = "<strong>Reflexiona de nuevo:</strong> " + data.feedback;
+                playBuzzerSound('error');
+            }
+        }
+
+        function nextScenario() {
+            activePuzzleIndex = (activePuzzleIndex + 1) % puzzleImages.length;
+            changePuzzleImage(activePuzzleIndex);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initPuzzleBoard();
+
+            // Audio Player Event Listeners & Fallback Handling
+            const audioPlayer = document.getElementById('official-audio-player');
+            const statusEl = document.getElementById('audio-status');
+
+            if (audioPlayer) {
+                audioPlayer.addEventListener('play', () => {
+                    if(statusEl) statusEl.innerText = "▶ Reproduciendo audiocuento...";
+                });
+                audioPlayer.addEventListener('pause', () => {
+                    if(statusEl) statusEl.innerText = "⏸ Audiocuento en pausa";
+                });
+                audioPlayer.addEventListener('ended', () => {
+                    if(statusEl) statusEl.innerText = "✅ Audiocuento finalizado. ¡Responde con tu grupo!";
+                });
+                audioPlayer.addEventListener('error', () => {
+                    if(statusEl) statusEl.innerText = "🔊 Audio sintético activo para demostración";
+                });
+            }
+        });
+
+        // Web Audio Synthesizer Sound Effects
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBuzzerSound(type = 'success') {
+            try {
+                initAudio();
+                if(audioCtx.state === 'suspended') audioCtx.resume();
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if(type === 'success') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.25);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(140, audioCtx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                }
+            } catch(e) {
+                console.log("Audio no disponible");
+            }
+        }
+
+        function recordAudioMessage() {
+            const input = document.getElementById('audio-msg-input');
+            const list = document.getElementById('recorded-msg-list');
+            if(!input || !list || !input.value.trim()) return;
+
+            const badge = document.createElement('div');
+            badge.className = 'bg-leafGreen/10 border border-leafGreen text-emerald-800 text-xs px-3 py-1.5 rounded-xl font-playful flex items-center gap-2 shadow-xs';
+            badge.innerHTML = `<i class="fa-solid fa-microphone-lines text-leafGreen"></i> "${input.value}"`;
+            list.appendChild(badge);
+            input.value = '';
+            playBuzzerSound('success');
+        }
+
+        // Canvas Drawing Logic for Mural
+        const mCanvas = document.getElementById('mural-canvas');
+        const mCtx = mCanvas ? mCanvas.getContext('2d') : null;
+        let isDrawing = false;
+
+        if(mCtx) {
+            mCtx.strokeStyle = '#2B2D42';
+            mCtx.lineWidth = 4;
+            mCtx.lineCap = 'round';
+        }
+
+        function startDrawing(e) {
+            if(!mCtx || !mCanvas) return;
+            isDrawing = true;
+            const rect = mCanvas.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+            const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            mCtx.beginPath();
+            mCtx.moveTo(x, y);
+        }
+
+        function draw(e) {
+            if(!isDrawing || !mCtx || !mCanvas) return;
+            const rect = mCanvas.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+            const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            mCtx.lineTo(x, y);
+            mCtx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        if(mCanvas) {
+            mCanvas.addEventListener('mousedown', startDrawing);
+            mCanvas.addEventListener('mousemove', draw);
+            mCanvas.addEventListener('mouseup', stopDrawing);
+            mCanvas.addEventListener('mouseleave', stopDrawing);
+
+            mCanvas.addEventListener('touchstart', startDrawing);
+            mCanvas.addEventListener('touchmove', draw);
+            mCanvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function clearCanvas() {
+            if(mCtx && mCanvas) {
+                mCtx.clearRect(0, 0, mCanvas.width, mCanvas.height);
+            }
+        }
+
+        let muralCount = 1;
+        function addToMural() {
+            const phraseInput = document.getElementById('mural-phrase');
+            const grid = document.getElementById('mural-grid');
+            if(!phraseInput || !grid || !mCanvas) return;
+
+            const phrase = phraseInput.value.trim();
+            const dataURL = mCanvas.toDataURL();
+
+            const item = document.createElement('div');
+            item.className = 'bg-white p-4 rounded-xl border border-yellow-200 shadow-sm flex flex-col justify-between';
+            item.innerHTML = `
+                <div>
+                    <div class="h-28 bg-gray-50 rounded-lg mb-2 overflow-hidden border border-gray-100 flex items-center justify-center">
+                        <img src="${dataURL}" class="max-h-full object-contain">
+                    </div>
+                    <p class="font-playful font-bold text-sm text-beeDark mt-2">"${phrase || 'Aporte libre al mural de la diversidad'}"</p>
+                </div>
+                <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+                    <span>👤 Estudiante Aula</span>
+                    <span class="text-red-500 cursor-pointer" onclick="this.innerHTML = '<i class=\'fa-solid fa-heart\'></i> ' + (parseInt(this.innerText.replace(/[^0-9]/g,''))+1)"><i class="fa-solid fa-heart"></i> 1</span>
+                </div>
+            `;
+            grid.prepend(item);
+            muralCount++;
+            const countEl = document.getElementById('mural-count');
+            if(countEl) countEl.innerText = muralCount + ' aportes';
+            phraseInput.value = '';
+            clearCanvas();
+            playBuzzerSound('success');
+        }
+    </script>
+</body>
+</html>
