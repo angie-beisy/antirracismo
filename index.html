@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo Amigo - ARG Educativo & Gamificación Ética (Fundación Senara)</title>
-    <!-- Tailwind CSS for styling -->
+    <!-- Tailwind CSS (CDN). NOTA: el CDN de Tailwind es solo para desarrollo/prototipo.
+         Para producción, compila el CSS con la CLI o PostCSS de Tailwind. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Fredoka & Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -68,8 +69,8 @@
                 <a href="#nodo3" class="hover:text-skyBlue transition">Nodo 3: Xenofobia</a>
                 <a href="#nodo4" class="hover:text-skyBlue transition">Nodo 4: Mural Colectivo</a>
             </nav>
-            <button onclick="playBuzzerSound('success')" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-2xl shadow-md transition transform hover:scale-105 flex items-center gap-2">
-                <i class="fa-solid fa-volume-high"></i> Sonido Mágico
+            <button type="button" onclick="playBuzzerSound('success')" aria-label="Reproducir sonido mágico" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-2xl shadow-md transition transform hover:scale-105 flex items-center gap-2">
+                <i class="fa-solid fa-volume-high" aria-hidden="true"></i> Sonido Mágico
             </button>
         </div>
     </header>
@@ -99,22 +100,18 @@
 
                     <div class="relative flex-shrink-0">
                         <div class="bg-beeYellow/20 p-3 rounded-2xl border-2 border-dashed border-beeYellow">
-                            <div class="w-36 h-36 bg-gray-900 rounded-xl p-3 flex flex-col justify-between text-white text-xs font-mono relative group cursor-pointer shadow-inner" onclick="window.open('https://youtu.be/bvvmioCWK5I?si=MaofzLeUQlUd0Emv', '_blank')">
-                                <div class="flex justify-between">
-                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
-                                    <div class="w-6 h-6 bg-white rounded-sm"></div>
-                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
-                                </div>
-                                <div class="text-center font-bold text-[10px] bg-red-600 text-white py-1.5 rounded shadow">ESCANEAR / CLIC</div>
-                                <div class="flex justify-between items-end">
-                                    <div class="w-8 h-8 bg-white rounded-sm p-1"><div class="w-full h-full bg-black rounded-xs"></div></div>
-                                    <div class="w-10 h-6 bg-white rounded-sm"></div>
-                                </div>
+                            <a href="https://youtu.be/bvvmioCWK5I?si=MaofzLeUQlUd0Emv" target="_blank" rel="noopener noreferrer"
+                               aria-label="Escanear o hacer clic para ver el video introductorio en YouTube"
+                               class="block w-36 h-36 bg-white rounded-xl p-2 relative group cursor-pointer shadow-inner">
+                                <!-- QR real que apunta al video de YouTube -->
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fyoutu.be%2FbvvmioCWK5I"
+                                     alt="Código QR hacia el video introductorio en YouTube"
+                                     class="w-full h-full object-contain rounded-lg">
                                 <!-- Hover overlay -->
                                 <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center rounded-xl text-center p-2 font-playful font-bold text-white text-xs">
-                                    ¡Haz clic para ver el video introductorio en YouTube!
+                                    ¡Escanéame o haz clic para ver el video!
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="text-left">
@@ -126,7 +123,7 @@
                             Sigue a nuestra amiga la abeja hacia el código QR o haz clic en él para reflexionar sobre lo dañino que es excluir y discriminar a los demás.
                         </p>
                         <a href="https://youtu.be/bvvmioCWK5I?si=MaofzLeUQlUd0Emv" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-playful text-sm px-5 py-2.5 rounded-xl shadow-md transition transform hover:scale-105">
-                            <i class="fa-brands fa-youtube text-lg"></i> Ver Video en YouTube
+                            <i class="fa-brands fa-youtube text-lg" aria-hidden="true"></i> Ver Video en YouTube
                         </a>
                     </div>
                 </div>
@@ -164,8 +161,8 @@
                                     </div>
                                     <h4 class="text-white font-playful text-xl font-bold mb-1">¡Rompecabezas Completado!</h4>
                                     <p class="text-emerald-200 text-xs mb-4 max-w-xs">Has ordenado la imagen correctamente. Ahora evalúa la situación con tu grupo.</p>
-                                    <button onclick="shuffleCurrentPuzzle()" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-xl text-xs transition shadow">
-                                        <i class="fa-solid fa-arrows-rotate"></i> Volver a Desordenar
+                                    <button type="button" onclick="shuffleCurrentPuzzle()" class="bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2 rounded-xl text-xs transition shadow">
+                                        <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Volver a Desordenar
                                     </button>
                                 </div>
                             </div>
@@ -177,8 +174,8 @@
                                     <button onclick="changePuzzleImage(2)" id="pbtn-2" class="px-3 py-1.5 rounded-xl border-2 border-transparent bg-gray-100 text-gray-700 font-playful text-xs font-bold transition">Imagen 3</button>
                                 </div>
 
-                                <button onclick="shuffleCurrentPuzzle()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful text-xs px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
-                                    <i class="fa-solid fa-shuffle"></i> Mezclar Fichas
+                                <button type="button" onclick="shuffleCurrentPuzzle()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful text-xs px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shuffle" aria-hidden="true"></i> Mezclar Fichas
                                 </button>
                             </div>
                         </div>
@@ -196,26 +193,26 @@
                                 <div class="mb-6">
                                     <p class="font-playful font-bold text-beeDark text-sm mb-3">¿Cómo valoras esta acción?</p>
                                     <div class="grid grid-cols-2 gap-4">
-                                        <button onclick="evaluateAction('bien')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-emerald-500 bg-emerald-100 text-emerald-900 hover:bg-emerald-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
-                                            <i class="fa-solid fa-face-smile text-2xl text-emerald-600"></i> <span>ESTÁ BIEN</span>
+                                        <button type="button" onclick="evaluateAction('bien')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-emerald-500 bg-emerald-100 text-emerald-900 hover:bg-emerald-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
+                                            <i class="fa-solid fa-face-smile text-2xl text-emerald-600" aria-hidden="true"></i> <span>ESTÁ BIEN</span>
                                         </button>
-                                        <button onclick="evaluateAction('mal')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-rose-500 bg-rose-100 text-rose-900 hover:bg-rose-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
-                                            <i class="fa-solid fa-face-angry text-2xl text-rose-600"></i> <span>NO ESTÁ BIEN</span>
+                                        <button type="button" onclick="evaluateAction('mal')" class="font-playful text-base md:text-xl font-extrabold py-4 px-4 rounded-2xl border-4 border-rose-500 bg-rose-100 text-rose-900 hover:bg-rose-500 hover:text-white transition shadow-lg flex items-center justify-center gap-2 transform hover:scale-105 cursor-pointer">
+                                            <i class="fa-solid fa-face-angry text-2xl text-rose-600" aria-hidden="true"></i> <span>NO ESTÁ BIEN</span>
                                         </button>
                                     </div>
                                 </div>
 
                                 <div id="feedback-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-sm text-amber-900">
                                     <h4 class="font-playful font-bold mb-1 flex items-center gap-2 text-amber-800 text-base">
-                                        <i class="fa-solid fa-lightbulb"></i> Reflexión Pedagógica (Fundación Senara):
+                                        <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Reflexión Pedagógica (Fundación Senara):
                                     </h4>
                                     <p id="feedback-text" class="italic"></p>
                                 </div>
                             </div>
 
                             <div class="mt-6 flex justify-end">
-                                <button onclick="nextScenario()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful font-bold px-5 py-2.5 rounded-xl shadow transition text-sm flex items-center gap-2">
-                                    Siguiente Imagen <i class="fa-solid fa-arrow-right"></i>
+                                <button type="button" onclick="nextScenario()" class="bg-skyBlue hover:bg-sky-600 text-white font-playful font-bold px-5 py-2.5 rounded-xl shadow transition text-sm flex items-center gap-2">
+                                    Siguiente Imagen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -244,12 +241,13 @@
                             🎧
                         </div>
                         <h3 class="font-playful font-bold text-lg text-beeDark mb-1">Audiocuento: "El Nuevo Cole"</h3>
-                        <p class="text-xs text-gray-500 mb-4">Relato oficial de concienciación e inclusión</p>
+                        <p class="text-xs text-gray-500 mb-4">Relato de concienciación e inclusión (audio de demostración)</p>
 
-                        <!-- HTML5 Audio Player with standard controls -->
+                        <!-- Reproductor HTML5 con controles estándar.
+                             TODO: reemplazar el src por el audiocuento real una vez alojado.
+                             El segundo <source> es solo audio de demostración. -->
                         <div class="bg-gray-50 p-3 rounded-2xl border border-emerald-200">
                             <audio id="official-audio-player" class="w-full h-10 rounded-lg outline-none" controls preload="metadata">
-                                <source src="https://ia800208.us.archive.org/4/items/test-audio-story-senara/audiocuento-senara.mp3" type="audio/mpeg">
                                 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
                                 Tu navegador no soporta el elemento de audio.
                             </audio>
@@ -278,8 +276,8 @@
                             <label class="block font-playful font-bold text-xs text-beeDark uppercase mb-2">Graba tu mensaje corto para el personaje:</label>
                             <div class="flex gap-2">
                                 <input type="text" id="audio-msg-input" placeholder="Ej: Yo te invitaría a jugar porque..." class="flex-grow px-4 py-2.5 rounded-xl border border-emerald-300 text-sm focus:outline-none focus:ring-2 focus:ring-leafGreen">
-                                <button onclick="recordAudioMessage()" class="bg-beeDark hover:bg-black text-white font-playful px-4 py-2.5 rounded-xl text-sm transition shadow">
-                                    <i class="fa-solid fa-microphone"></i> Enviar
+                                <button type="button" onclick="recordAudioMessage()" class="bg-beeDark hover:bg-black text-white font-playful px-4 py-2.5 rounded-xl text-sm transition shadow">
+                                    <i class="fa-solid fa-microphone" aria-hidden="true"></i> Enviar
                                 </button>
                             </div>
                             <div id="recorded-msg-list" class="mt-3 flex flex-wrap gap-2"></div>
@@ -313,7 +311,7 @@
                             </p>
                         </div>
                         <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
-                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> Conocer otras culturas amplía nuestro vocabulario y visión del mundo.
+                            <i class="fa-solid fa-shield-heart text-coralPink" aria-hidden="true"></i> <strong>Clave Senara:</strong> Conocer otras culturas amplía nuestro vocabulario y visión del mundo.
                         </div>
                     </div>
 
@@ -326,7 +324,7 @@
                             </p>
                         </div>
                         <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
-                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> La gastronomía y las tradiciones son parte de nuestra identidad y patrimonio compartido.
+                            <i class="fa-solid fa-shield-heart text-coralPink" aria-hidden="true"></i> <strong>Clave Senara:</strong> La gastronomía y las tradiciones son parte de nuestra identidad y patrimonio compartido.
                         </div>
                     </div>
 
@@ -339,7 +337,7 @@
                             </p>
                         </div>
                         <div class="bg-white p-3 rounded-xl border border-pink-100 text-xs text-rose-800 font-medium shadow-xs">
-                            <i class="fa-solid fa-shield-heart text-coralPink"></i> <strong>Clave Senara:</strong> El talento y la inteligencia no tienen fronteras ni pasaporte.
+                            <i class="fa-solid fa-shield-heart text-coralPink" aria-hidden="true"></i> <strong>Clave Senara:</strong> El talento y la inteligencia no tienen fronteras ni pasaporte.
                         </div>
                     </div>
                 </div>
@@ -363,7 +361,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 bg-amber-50/40 p-6 rounded-2xl border border-yellow-200">
                     <div class="bg-white p-6 rounded-2xl shadow-md border border-yellow-200 flex flex-col">
                         <h3 class="font-playful font-bold text-lg text-beeDark mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-paintbrush text-yellow-500"></i> Lienzo de Dibujo
+                            <i class="fa-solid fa-paintbrush text-yellow-500" aria-hidden="true"></i> Lienzo de Dibujo
                         </h3>
                         <p class="text-xs text-gray-500 mb-3">Dibuja libremente tu símbolo o silueta de la amistad:</p>
                         
@@ -374,11 +372,11 @@
                         <div class="space-y-3">
                             <input type="text" id="mural-phrase" placeholder="Frase: Ej: Me gusta compartir y soy único" class="w-full px-3 py-2.5 rounded-xl border border-yellow-300 text-xs focus:outline-none focus:ring-2 focus:ring-beeYellow shadow-inner">
                             <div class="flex gap-2">
-                                <button onclick="clearCanvas()" class="bg-gray-200 hover:bg-gray-300 text-beeDark font-playful px-3 py-2.5 rounded-xl text-xs transition">
-                                    <i class="fa-solid fa-eraser"></i> Borrar
+                                <button type="button" onclick="clearCanvas()" class="bg-gray-200 hover:bg-gray-300 text-beeDark font-playful px-3 py-2.5 rounded-xl text-xs transition">
+                                    <i class="fa-solid fa-eraser" aria-hidden="true"></i> Borrar
                                 </button>
-                                <button onclick="addToMural()" class="flex-grow bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2.5 rounded-xl text-xs transition shadow">
-                                    <i class="fa-solid fa-plus"></i> Añadir al Mural
+                                <button type="button" onclick="addToMural()" class="flex-grow bg-beeYellow hover:bg-yellow-400 text-beeDark font-playful font-bold px-4 py-2.5 rounded-xl text-xs transition shadow">
+                                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir al Mural
                                 </button>
                             </div>
                         </div>
@@ -400,7 +398,7 @@
                                 </div>
                                 <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
                                     <span>👤 Sofía (8 años)</span>
-                                    <span class="text-red-500"><i class="fa-solid fa-heart"></i> 12</span>
+                                    <span class="text-red-500"><i class="fa-solid fa-heart" aria-hidden="true"></i> 12</span>
                                 </div>
                             </div>
                         </div>
@@ -428,9 +426,11 @@
         let selectedTileIndex = null;
         let currentBoardState = []; // Array of piece indices [0..8]
 
+        // Imágenes servidas desde el CDN de Unsplash (estable y permite enlace directo).
+        // Reemplázalas por imágenes propias con licencia para la versión final.
         const puzzleImages = [
             {
-                url: 'https://thumbs.dreamstime.com/b/e-114876132.jpg',
+                url: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=600&q=60',
                 tag: 'Imagen 1 de 3',
                 title: 'Trabajo en Equipo y Diversidad',
                 desc: 'Niños y niñas colaborando felices en el aula compartiendo sus aprendizajes.',
@@ -438,7 +438,7 @@
                 isGood: true
             },
             {
-                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFl--tTbnSfwjWlvOUBYvvgim00Uj6rnl9NLnH3fqcWy47ugygI9foJOI6&s=10',
+                url: 'https://images.unsplash.com/photo-1511949860663-92c5c57d48a7?auto=format&fit=crop&w=600&q=60',
                 tag: 'Imagen 2 de 3',
                 title: 'Inclusión en los Juegos del Recreo',
                 desc: 'Invitar a todos a jugar en el patio evita que alguien se sienta triste o solo.',
@@ -446,7 +446,7 @@
                 isGood: true
             },
             {
-                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgrnpltTZ9KH6jEAwGQoldEt3-hj0Cl7iuhTMxTVM9kw&s=10',
+                url: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&w=600&q=60',
                 tag: 'Imagen 3 de 3',
                 title: 'Abrazo Colectivo y Respeto',
                 desc: 'La empatía y la amistad superan cualquier barrera de exclusión.',
@@ -457,9 +457,12 @@
 
         function initPuzzleBoard() {
             currentBoardState = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-            shuffleArray(currentBoardState);
+            // Mezcla asegurando que NO quede ya resuelto al iniciar
+            do {
+                shuffleArray(currentBoardState);
+            } while (currentBoardState.every((val, index) => val === index));
             renderPuzzleBoard();
-            
+
             const overlay = document.getElementById('puzzle-completed-overlay');
             if(overlay) overlay.classList.add('hidden');
         }
@@ -594,11 +597,17 @@
             feedbackBox.classList.remove('hidden');
             const data = puzzleImages[activePuzzleIndex];
 
-            if(type === 'bien') {
-                feedbackText.innerHTML = "<strong>¡Excelente!</strong> " + data.feedback;
+            // La respuesta del niño ('bien'/'mal') se compara con si la escena es positiva (isGood)
+            const childSaysGood = (type === 'bien');
+            const isCorrect = (childSaysGood === data.isGood);
+
+            if (isCorrect) {
+                feedbackText.innerHTML = "<strong>¡Muy bien pensado!</strong> " + data.feedback;
+                feedbackBox.className = 'bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-sm text-emerald-900';
                 playBuzzerSound('success');
             } else {
-                feedbackText.innerHTML = "<strong>Reflexiona de nuevo:</strong> " + data.feedback;
+                feedbackText.innerHTML = "<strong>Reflexionemos juntos:</strong> " + data.feedback;
+                feedbackBox.className = 'bg-amber-50 border border-amber-200 p-4 rounded-xl text-sm text-amber-900';
                 playBuzzerSound('error');
             }
         }
@@ -676,7 +685,13 @@
 
             const badge = document.createElement('div');
             badge.className = 'bg-leafGreen/10 border border-leafGreen text-emerald-800 text-xs px-3 py-1.5 rounded-xl font-playful flex items-center gap-2 shadow-xs';
-            badge.innerHTML = `<i class="fa-solid fa-microphone-lines text-leafGreen"></i> "${input.value}"`;
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-microphone-lines text-leafGreen';
+            icon.setAttribute('aria-hidden', 'true');
+            const text = document.createElement('span');
+            text.textContent = `"${input.value}"`;
+            badge.appendChild(icon);
+            badge.appendChild(text);
             list.appendChild(badge);
             input.value = '';
             playBuzzerSound('success');
@@ -693,25 +708,32 @@
             mCtx.lineCap = 'round';
         }
 
-        function startDrawing(e) {
-            if(!mCtx || !mCanvas) return;
-            isDrawing = true;
+        function getCanvasCoords(e) {
             const rect = mCanvas.getBoundingClientRect();
             const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
             const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
+            // Escalar las coordenadas de pantalla al tamaño interno del canvas
+            const scaleX = mCanvas.width / rect.width;
+            const scaleY = mCanvas.height / rect.height;
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDrawing(e) {
+            if(!mCtx || !mCanvas) return;
+            if (e.cancelable) e.preventDefault();
+            isDrawing = true;
+            const { x, y } = getCanvasCoords(e);
             mCtx.beginPath();
             mCtx.moveTo(x, y);
         }
 
         function draw(e) {
             if(!isDrawing || !mCtx || !mCanvas) return;
-            const rect = mCanvas.getBoundingClientRect();
-            const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
-            const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
+            if (e.cancelable) e.preventDefault();
+            const { x, y } = getCanvasCoords(e);
             mCtx.lineTo(x, y);
             mCtx.stroke();
         }
@@ -726,8 +748,8 @@
             mCanvas.addEventListener('mouseup', stopDrawing);
             mCanvas.addEventListener('mouseleave', stopDrawing);
 
-            mCanvas.addEventListener('touchstart', startDrawing);
-            mCanvas.addEventListener('touchmove', draw);
+            mCanvas.addEventListener('touchstart', startDrawing, { passive: false });
+            mCanvas.addEventListener('touchmove', draw, { passive: false });
             mCanvas.addEventListener('touchend', stopDrawing);
         }
 
@@ -748,18 +770,43 @@
 
             const item = document.createElement('div');
             item.className = 'bg-white p-4 rounded-xl border border-yellow-200 shadow-sm flex flex-col justify-between';
-            item.innerHTML = `
-                <div>
-                    <div class="h-28 bg-gray-50 rounded-lg mb-2 overflow-hidden border border-gray-100 flex items-center justify-center">
-                        <img src="${dataURL}" class="max-h-full object-contain">
-                    </div>
-                    <p class="font-playful font-bold text-sm text-beeDark mt-2">"${phrase || 'Aporte libre al mural de la diversidad'}"</p>
-                </div>
-                <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
-                    <span>👤 Estudiante Aula</span>
-                    <span class="text-red-500 cursor-pointer" onclick="this.innerHTML = '<i class=\'fa-solid fa-heart\'></i> ' + (parseInt(this.innerText.replace(/[^0-9]/g,''))+1)"><i class="fa-solid fa-heart"></i> 1</span>
-                </div>
-            `;
+
+            // Bloque superior: dibujo + frase (frase con textContent para evitar inyección HTML)
+            const top = document.createElement('div');
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'h-28 bg-gray-50 rounded-lg mb-2 overflow-hidden border border-gray-100 flex items-center justify-center';
+            const img = document.createElement('img');
+            img.src = dataURL;
+            img.className = 'max-h-full object-contain';
+            img.alt = 'Dibujo aportado al mural colectivo';
+            imgWrap.appendChild(img);
+            const phraseEl = document.createElement('p');
+            phraseEl.className = 'font-playful font-bold text-sm text-beeDark mt-2';
+            phraseEl.textContent = `"${phrase || 'Aporte libre al mural de la diversidad'}"`;
+            top.appendChild(imgWrap);
+            top.appendChild(phraseEl);
+
+            // Bloque inferior: autor + contador de me gusta robusto
+            const bottom = document.createElement('div');
+            bottom.className = 'mt-4 flex items-center justify-between text-xs text-gray-400';
+            const author = document.createElement('span');
+            author.textContent = '👤 Estudiante Aula';
+            const likeBtn = document.createElement('button');
+            likeBtn.type = 'button';
+            likeBtn.className = 'text-red-500 cursor-pointer flex items-center gap-1';
+            likeBtn.setAttribute('aria-label', 'Dar me gusta a este aporte');
+            let likes = 1;
+            likeBtn.innerHTML = '<i class="fa-solid fa-heart" aria-hidden="true"></i> <span>1</span>';
+            const likeCountEl = likeBtn.querySelector('span');
+            likeBtn.addEventListener('click', () => {
+                likes++;
+                likeCountEl.textContent = likes;
+            });
+            bottom.appendChild(author);
+            bottom.appendChild(likeBtn);
+
+            item.appendChild(top);
+            item.appendChild(bottom);
             grid.prepend(item);
             muralCount++;
             const countEl = document.getElementById('mural-count');
